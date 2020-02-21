@@ -8,13 +8,26 @@ import java.net.URLEncoder;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import com.carrotglobal.restsample.dto.InfoDTO;
+
 import org.springframework.stereotype.Service;
 
 /**
  * restSampleService
  */
 @Service
-public class restSampleService {
+public class RestSampleService {
+
+	@Autowired(required=false)
+	private RestSampleMapper restSampleMapper;
+
+	public int selectIdx(int idx) throws Exception {
+
+		int info = restSampleMapper.selectIdx(idx);
+		System.out.println("HJLOG info : " + info);
+		return info;
+	}
 
    	public void sendPostTest() throws Exception {
 		

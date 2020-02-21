@@ -1,21 +1,25 @@
 package com.carrotglobal.restsample.controller;
 
-import com.carrotglobal.restsample.service.restSampleService;
+import com.carrotglobal.restsample.dto.InfoDTO;
+import com.carrotglobal.restsample.service.RestSampleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * restSample
  */
 @RestController
 @RequestMapping("/rest")
-public class restSampleController {
+public class RestSampleController {
 
     @Autowired
-    restSampleService restsampleservice;
+    RestSampleService restsampleservice;
 
     @RequestMapping(value="/test", method = RequestMethod.GET)
     public String test() {
@@ -35,6 +39,21 @@ public class restSampleController {
         restsampleservice.sendGetTest();
     	
     }
+
+    @RequestMapping(value="/{idx}", method=RequestMethod.GET)
+    public void selectIdx(@PathVariable("idx") int idx) {
+
+        int infoDto = 100;
+        System.out.println("HJLOG idx : " + idx);
+		try {
+			infoDto = restsampleservice.selectIdx(idx);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        System.out.println("selectIdx : " + infoDto);
+    }
+    
 
    
 }
