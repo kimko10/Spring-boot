@@ -6,11 +6,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import com.carrotglobal.restsample.dto.InfoDTO;
+import com.carrotglobal.restsample.vo.InfoVO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,11 +23,37 @@ public class RestSampleService {
 	@Autowired(required=false)
 	private RestSampleMapper restSampleMapper;
 
-	public int selectIdx(int idx) throws Exception {
+	public InfoVO selectIdx(int idx) throws Exception {
 
-		int info = restSampleMapper.selectIdx(idx);
-		System.out.println("HJLOG info : " + info);
+		InfoVO info = restSampleMapper.selectIdx(idx);
+		System.out.println("HJLOG info : " + info.toString());
 		return info;
+	}
+
+	public List<InfoVO> getAll() throws Exception {
+		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
+
+		
+		System.out.println("HJLOG getAll : " + infoList);
+		return infoList;
+	}
+
+	public int insertIdx(String info) throws Exception {
+
+		return restSampleMapper.insertIdx(info);
+
+	}
+
+	public int updateIdx(InfoVO vo) throws Exception {
+
+		return restSampleMapper.updateIdx(vo);
+
+	}
+
+	public int deleteIdx(int idx) throws Exception {
+
+		return restSampleMapper.deleteIdx(idx);
+		
 	}
 
    	public void sendPostTest() throws Exception {
