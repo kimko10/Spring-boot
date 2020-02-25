@@ -2,27 +2,40 @@ package com.carrotglobal.restsample.controller;
 
 import java.util.List;
 
+import com.carrotglobal.restsample.dto.InfoDTO;
 import com.carrotglobal.restsample.service.RestSampleService;
 import com.carrotglobal.restsample.vo.InfoVO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * restSample
  */
 @RestController
 @RequestMapping("/rest")
+@Slf4j
 public class RestSampleController {
+
+    private static final Logger logger = LoggerFactory.getLogger(RestSampleController.class);
 
     @Autowired
     RestSampleService restsampleservice;
 
-    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @GetMapping(value = "/test")
     public String test() {
         return "test";
     }
@@ -34,27 +47,28 @@ public class RestSampleController {
 
     }
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    @GetMapping(value = "/get")
     public void sendGetTest() throws Exception {
 
         restsampleservice.sendGetTest();
 
     }
 
-    @RequestMapping(value = "/{idx}", method = RequestMethod.GET)
+    @GetMapping(value = "/{idx}")
     public void selectIdx(@PathVariable("idx") int idx) {
 
         InfoVO infoVo = null;
-        System.out.println("HJLOG idx : " + idx);
+        logger.info("HJLOG idx : " + idx);
         try {
             infoVo = restsampleservice.selectIdx(idx);
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("selectIdx() ERROR");
         }
-        System.out.println("selectIdx : " + infoVo);
+        logger.info("selectIdx : " + infoVo);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @GetMapping(value = "/all")
     public void getAll() {
         List<InfoVO> infoList;
         try {
@@ -62,7 +76,7 @@ public class RestSampleController {
             if (infoList != null) {
                 for (InfoVO info : infoList) {
 
-                    System.out.println("HJLOG  : " + info.toString());
+                    logger.info("HJLOG  : " + info.toString());
 
                 }
             }
@@ -72,31 +86,32 @@ public class RestSampleController {
 
     }
 
-    @RequestMapping(value = "/{info}", method = RequestMethod.POST)
+    @PostMapping(value = "/{info}")
     public void insertIdx(@PathVariable("info") String info) {
 
         try {
-            System.out.println("HJLOG insert : " + restsampleservice.insertIdx(info));
+            logger.info("HJLOG insert : " + restsampleservice.insertIdx(info));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @RequestMapping(value="/{idx}", method = RequestMethod.DELETE)
+    @DeleteMapping(value="/{idx}")
     public void deleteIdx(@PathVariable("idx") int idx) {
 
         try {
-            System.out.println("HJLOG delete : " + restsampleservice.deleteIdx(idx));
+            logger.info("HJLOG delete : " + restsampleservice.deleteIdx(idx));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @RequestMapping(value="/{idx}", method = RequestMethod.PUT)
-    public void updateIdx(@RequestBody InfoVO vo) {
-        System.out.println("HJLOG update : " + vo.toString());
+    @PutMapping(value="/{idx}")
+    public void updateIdx(@PathVariable("idx") int idx, @RequestBody InfoDTO vo) {
+        vo.setIdx(idx);
+        logger.info("HJLOG update : " + vo.toString());
         try {
-            System.out.println("HJLOG update : " + restsampleservice.updateIdx(vo));
+            logger.info("HJLOG update : " + restsampleservice.updateIdx(vo));
         } catch (Exception e) {
             e.printStackTrace();
         }

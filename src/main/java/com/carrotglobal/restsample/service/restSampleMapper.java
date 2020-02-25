@@ -2,6 +2,7 @@ package com.carrotglobal.restsample.service;
 
 import java.util.List;
 
+import com.carrotglobal.restsample.dto.InfoDTO;
 import com.carrotglobal.restsample.vo.InfoVO;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -18,7 +19,7 @@ public interface RestSampleMapper {
     
     public int insertIdx(@Param("info") String info);
 
-    public int updateIdx(@Param("vo") InfoVO vo);
+    public int updateIdx(@Param("vo") InfoDTO vo);
 
     public int deleteIdx(@Param("idx") int idx);
 

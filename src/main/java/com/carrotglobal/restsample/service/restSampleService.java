@@ -9,15 +9,19 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.carrotglobal.restsample.dto.InfoDTO;
 import com.carrotglobal.restsample.vo.InfoVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * restSampleService
  */
 @Service
+@Slf4j
 public class RestSampleService {
 
 	@Autowired(required=false)
@@ -26,11 +30,12 @@ public class RestSampleService {
 	public InfoVO selectIdx(int idx) throws Exception {
 
 		InfoVO info = restSampleMapper.selectIdx(idx);
-		System.out.println("HJLOG info : " + info.toString());
+		System.out.println("HJLOG selectIdx : " + info.toString());
 		return info;
 	}
 
 	public List<InfoVO> getAll() throws Exception {
+		
 		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
 
 		
@@ -40,18 +45,19 @@ public class RestSampleService {
 
 	public int insertIdx(String info) throws Exception {
 
+		System.out.println("HJLOG insertIdxService");
 		return restSampleMapper.insertIdx(info);
 
 	}
 
-	public int updateIdx(InfoVO vo) throws Exception {
-
+	public int updateIdx(InfoDTO vo) throws Exception {
+		System.out.println("HJLOG updateIdxService");
 		return restSampleMapper.updateIdx(vo);
 
 	}
 
 	public int deleteIdx(int idx) throws Exception {
-
+		System.out.println("HJLOG deleteIdxService");
 		return restSampleMapper.deleteIdx(idx);
 		
 	}

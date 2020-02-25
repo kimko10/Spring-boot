@@ -24,13 +24,13 @@
             )
     </insert>
 
-    <update id="updateIdx" parameterType="com.carrotglobal.restsample.vo.InfoVO">
+    <update id="updateIdx" parameterType="com.carrotglobal.restsample.dto.InfoDTO">
         UPDATE 
             info
         SET
-            info = #{info}
+            info = #{vo.info}
         WHERE
-            idx = #{idx}
+            idx = #{vo.idx}
     </update>
 
     <delete id="deleteIdx">
