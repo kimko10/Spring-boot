@@ -19,10 +19,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * DatabaseConfiguration
- * ë°ì´í„°ë² ì´ìŠ¤ ì ‘ì†, íŠ¸ëœì­ì…˜ ê´€ë¦¬, DAO, Service ë¥¼ ì •ì˜
+ * µ¥ÀÌÅÍº£ÀÌ½º Á¢¼Ó, Æ®·£Àè¼Ç °ü¸®, DAO, Service ¸¦ Á¤ÀÇ
  */
 @Configuration
-@MapperScan(basePackages= {"com.carrotglobal.**.**.service"}) // Mapper(DAO) ì¸í„°í˜ì´ìŠ¤ ìŠ¤ìº”í•˜ë„ë¡ ì„¤ì •
+@MapperScan(basePackages= {"com.carrotglobal.**.**.service"}) // Mapper(DAO) ÀÎÅÍÆäÀÌ½º ½ºÄµÇÏµµ·Ï ¼³Á¤
 public class DatabaseConfiguration {
 	
 	@Autowired

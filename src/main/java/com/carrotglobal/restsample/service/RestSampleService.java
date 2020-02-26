@@ -30,7 +30,7 @@ public class RestSampleService {
 	public InfoVO selectIdx(int idx) throws Exception {
 
 		InfoVO info = restSampleMapper.selectIdx(idx);
-		System.out.println("HJLOG selectIdx : " + info.toString());
+		log.info("HJLOG selectIdx : " + info.toString());
 		return info;
 	}
 
@@ -39,33 +39,33 @@ public class RestSampleService {
 		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
 
 		
-		System.out.println("HJLOG getAll : " + infoList);
+		log.info("HJLOG getAll : " + infoList);
 		return infoList;
 	}
 
 	public int insertIdx(String info) throws Exception {
 
-		System.out.println("HJLOG insertIdxService");
+		log.info("HJLOG insertIdxService");
 		return restSampleMapper.insertIdx(info);
 
 	}
 
 	public int updateIdx(InfoDTO vo) throws Exception {
-		System.out.println("HJLOG updateIdxService");
+		log.info("HJLOG updateIdxService");
 		return restSampleMapper.updateIdx(vo);
 
 	}
 
 	public int deleteIdx(int idx) throws Exception {
-		System.out.println("HJLOG deleteIdxService");
+		log.info("HJLOG deleteIdxService");
 		return restSampleMapper.deleteIdx(idx);
 		
 	}
 
    	public void sendPostTest() throws Exception {
 		
-		URL url = new URL("https://atlas.kuder.com/api/externalapi/GetUserAssessmentItemByCategory"); // í˜¸ì¶œí•  URL
-    	Map<String, Object> params = new LinkedHashMap<>(); // LinkedHashMapì€ HashMapê³¼ëŠ” keyì˜ ìˆœì„œê°€ ì§€ì¼œì§€ëŠ” ì°¨ì´ê°€ ìˆìŒ
+		URL url = new URL("https://atlas.kuder.com/api/externalapi/GetUserAssessmentItemByCategory"); // È£ÃâÇÒ URL
+    	Map<String, Object> params = new LinkedHashMap<>(); // LinkedHashMapÀº HashMap°ú´Â keyÀÇ ¼ø¼­°¡ ÁöÄÑÁö´Â Â÷ÀÌ°¡ ÀÖÀ½
     	params.put("OrganizationAPIKey", "abe52eca-df09-4cb5-9934-45f37f73887d");
     	params.put("AssessmentCategoryId", 2);
     	params.put("CultureId", 5);
@@ -88,19 +88,19 @@ public class RestSampleService {
     	conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
     	conn.setRequestProperty("Content-Length",  String.valueOf(postDataBytes.length));
     	conn.setDoOutput(true);
-    	conn.getOutputStream().write(postDataBytes); // POST í˜¸ì¶œ
+    	conn.getOutputStream().write(postDataBytes); // POST È£Ãâ
     	
     	int responseCode = conn.getResponseCode();
-    	System.out.println("URL : " + url.toString());
-    	System.out.println("Parameter : " + postData.toString());
-    	System.out.println("Response Code : " + responseCode);
+    	log.info("URL : " + url.toString());
+    	log.info("Parameter : " + postData.toString());
+    	log.info("Response Code : " + responseCode);
     	
     	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
     	
     	String inputLine ="";
-        while((inputLine = in.readLine()) != null) { // response ì¶œë ¥
+        while((inputLine = in.readLine()) != null) { // response Ãâ·Â
             
-            System.out.println("sendGetTest ì¡°íšŒê²°ê³¼ : " + inputLine);
+            log.info("sendGetTest Á¶È¸°á°ú : " + inputLine);
             
     	}
     	
@@ -121,8 +121,8 @@ public class RestSampleService {
     	conn.setRequestMethod("GET");
     	
     	int responseCode = conn.getResponseCode();
-    	System.out.println("URL : " + url.toString());
-    	System.out.println("Response Code : " + responseCode);
+    	log.info("URL : " + url.toString());
+    	log.info("Response Code : " + responseCode);
     	
     	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
     	
@@ -130,7 +130,7 @@ public class RestSampleService {
     	
     	while((inputLine = in.readLine()) != null) {
 
-    		System.out.println("sendGetTest ì¡°íšŒê²°ê³¼ : " + inputLine);
+    		log.info("sendGetTest Á¶È¸°á°ú : " + inputLine);
     		
     	}
     	

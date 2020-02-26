@@ -15,9 +15,4 @@ public class InfoVO {
 
     private String info;
 
-    /* @Override
-    public String toString(){
-       return "HJLOG to String idx : " + idx + " info : " + info;
-    } */
-
 }
