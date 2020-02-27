@@ -1,0 +1,20 @@
+# properties 파일로 할 때
+#spring.datasource.username=itest
+#spring.datasource.password=dusrn1
+#spring.datasource.url=jdbc:mariadb://mxm.kr:23306/itest
+#spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+# properties 파일로 하고 hikariCP 사용 때
+#spring.datasource.hikari.username=itest
+#spring.datasource.hikari.password=dusrn1
+#spring.datasource.hikari.jdbc-url=jdbc:mariadb://mxm.kr:23306/itest
+#spring.datasource.hikari.driver-class-name=org.mariadb.jdbc.Driver
+
+# DB설정
+spring :
+  datasource :
+    hikari :
+      username : itest
+      password : dusrn1
+      jdbc-url : jdbc:mariadb://mxm.kr:23306/itest
+      driver-class-name : org.mariadb.jdbc.Driver
+

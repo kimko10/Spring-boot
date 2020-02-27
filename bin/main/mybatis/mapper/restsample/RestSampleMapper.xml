@@ -13,14 +13,16 @@
         select * from info
     </select>
 
-    <insert id="insertIdx">
+    <insert id="insertIdx" parameterType="com.carrotglobal.restsample.dto.InfoDTO">
         INSERT INTO info
             (
-                info
+            	idx
+            	, info
             ) 
         VALUES 
             ( 
-                #{info} 
+            	#{dto.idx}
+            	, #{dto.info} 
             )
     </insert>
 
@@ -28,9 +30,9 @@
         UPDATE 
             info
         SET
-            info = #{vo.info}
+            info = #{dto.info}
         WHERE
-            idx = #{vo.idx}
+            idx = #{dto.idx}
     </update>
 
     <delete id="deleteIdx">

@@ -9,11 +9,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.carrotglobal.restsample.dto.InfoDTO;
-import com.carrotglobal.restsample.vo.InfoVO;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.carrotglobal.common.service.AbstractService;
+import com.carrotglobal.restsample.dto.InfoDTO;
+import com.carrotglobal.restsample.vo.InfoVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,43 +23,75 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Service
 @Slf4j
-public class RestSampleService {
+public class RestSampleService extends AbstractService {
 
 	@Autowired(required=false)
 	private RestSampleMapper restSampleMapper;
 
+	/**
+	 * info 테이블에서 값 가져오기
+	 * @param idx
+	 * @return
+	 * @throws Exception
+	 */
 	public InfoVO selectIdx(int idx) throws Exception {
 
 		InfoVO info = restSampleMapper.selectIdx(idx);
-		log.info("HJLOG selectIdx : " + info.toString());
+		log.info("selectIdx : " + info.toString());
 		return info;
 	}
 
+	/**
+	 * info 테이블에서 전체 값 가져오기
+	 * @param idx
+	 * @return
+	 * @throws Exception
+	 */
 	public List<InfoVO> getAll() throws Exception {
 		
 		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
 
 		
-		log.info("HJLOG getAll : " + infoList);
+		log.info("getAll : " + infoList);
 		return infoList;
 	}
+	
+	/**
+	 * info 테이블에서 값 추가
+	 * @param idx
+	 * @return
+	 * @throws Exception
+	 */
+	public void insertIdx(InfoDTO dto) throws Exception {
 
-	public int insertIdx(String info) throws Exception {
-
-		log.info("HJLOG insertIdxService");
-		return restSampleMapper.insertIdx(info);
+		log.info("insertIdxService");
+		restSampleMapper.insertIdx(dto);
 
 	}
 
-	public int updateIdx(InfoDTO vo) throws Exception {
-		log.info("HJLOG updateIdxService");
-		return restSampleMapper.updateIdx(vo);
+	/**
+	 * info 테이블에서 값 수정
+	 * @param idx
+	 * @return
+	 * @throws Exception
+	 */
+	public void updateIdx(InfoDTO dto) throws Exception {
+		log.info("updateIdxService");
+		restSampleMapper.updateIdx(dto);
+		// 트랜젝션 테스트 용
+		//throw new NullPointerException();
 
 	}
 
-	public int deleteIdx(int idx) throws Exception {
-		log.info("HJLOG deleteIdxService");
-		return restSampleMapper.deleteIdx(idx);
+	/**
+	 * info 테이블에서 값 삭제
+	 * @param idx
+	 * @return
+	 * @throws Exception
+	 */
+	public void deleteIdx(int idx) throws Exception {
+		log.info("deleteIdxService");
+		restSampleMapper.deleteIdx(idx);
 		
 	}
 

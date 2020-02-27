@@ -54,7 +54,7 @@ public class RestSampleController {
     public void selectIdx(@PathVariable("idx") int idx) {
 
         InfoVO infoVo = null;
-        log.info("HJLOG idx : " + idx);
+        log.info("idx : " + idx);
         try {
             infoVo = restsampleservice.selectIdx(idx);
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class RestSampleController {
             if (infoList != null) {
                 for (InfoVO info : infoList) {
 
-                    log.info("HJLOG  : " + info.toString());
+                    log.info(" : " + info.toString());
 
                 }
             }
@@ -82,12 +82,14 @@ public class RestSampleController {
 
     }
 
-    @PostMapping(value = "/{info}")
-    public void insertIdx(@PathVariable("info") String info) {
+    @PostMapping(value = "/{idx}")
+    public void insertIdx(@PathVariable("idx") int idx, @RequestBody InfoDTO dto) {
 
         try {
-            log.info("HJLOG insert : " + restsampleservice.insertIdx(info));
+        	dto.setIdx(idx);
+            restsampleservice.insertIdx(dto);
         } catch (Exception e) {
+        	log.debug("insertIdx : " + dto);
             e.printStackTrace();
         }
     }
@@ -96,19 +98,21 @@ public class RestSampleController {
     public void deleteIdx(@PathVariable("idx") int idx) {
 
         try {
-            log.info("HJLOG delete : " + restsampleservice.deleteIdx(idx));
+            restsampleservice.deleteIdx(idx);
         } catch (Exception e) {
+        	log.debug("deleteIdx : " + idx);
             e.printStackTrace();
         }
     }
 
     @PutMapping(value="/{idx}")
-    public void updateIdx(@PathVariable("idx") int idx, @RequestBody InfoDTO vo) {
-        vo.setIdx(idx);
-        log.info("HJLOG update : " + vo.toString());
+    public void updateIdx(@PathVariable("idx") int idx, @RequestBody InfoDTO dto) {
+    	dto.setIdx(idx);
+        log.info("update : " + dto.toString());
         try {
-            log.info("HJLOG update : " + restsampleservice.updateIdx(vo));
+            restsampleservice.updateIdx(dto);
         } catch (Exception e) {
+        	log.debug("updateIdx " + idx);
             e.printStackTrace();
         }
     }
