@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <!-- Console 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    	<pattern>%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n</pattern>
+	    </encoder>
+    </appender>
+    
+    <!-- Console 설정 -->
+    <appender name="CONSOLE2" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    	<pattern>%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] >>>> %msg%n</pattern>
+	    </encoder>
+    </appender>
+    
+    <!-- root레벨 설정 -->
+    <root level="INFO">
+    	<springProfile name="console-logging">
+	    	<appender-ref ref="CONSOLE2"/>
+    	</springProfile>
+    </root>
+
+</configuration>
+

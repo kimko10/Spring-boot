@@ -1,4 +1,4 @@
-package com.carrotglobal.restsample.service;
+package com.carrotglobal.restsample.mapper;
 
 import java.util.List;
 

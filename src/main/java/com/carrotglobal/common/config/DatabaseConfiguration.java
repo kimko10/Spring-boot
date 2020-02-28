@@ -24,7 +24,7 @@ import com.zaxxer.hikari.HikariDataSource;
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.carrotglobal.**.service"}) // Mapper(DAO) 인터페이스 스캔하도록 설정
+@MapperScan(basePackages= {"com.carrotglobal.**.mapper"}) // Mapper(DAO) 인터페이스 스캔하도록 설정
 public class DatabaseConfiguration {
 	
 	@Autowired

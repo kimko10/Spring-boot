@@ -8,6 +8,13 @@ group = 'com.carrotglobal'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+// gradle 컴파일 시 UTF-8로 인코딩 처리
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
 configurations {
 	developmentOnly
 	runtimeClasspath {
@@ -20,27 +27,27 @@ repositories {
 }
 
 dependencies {
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	compile ('org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16')
 	compile group: 'com.zaxxer', name: 'HikariCP', version: '2.3.2'
 	compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.4'
-	// https://mvnrepository.com/artifact/cglib/cglib
-	compile group: 'cglib', name: 'cglib', version: '2.2.2'
-	
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+	testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+	
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
 	
 	testCompileOnly 'org.projectlombok:lombok:1.18.12'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 	
-    
-
 }
 
 test {

@@ -1,3 +1,9 @@
+spring:
+ profiles:
+    active: local
+    
+--- ## local 환경
+# DB설정
 # properties 파일로 할 때
 #spring.datasource.username=itest
 #spring.datasource.password=dusrn1
@@ -8,13 +14,22 @@
 #spring.datasource.hikari.password=dusrn1
 #spring.datasource.hikari.jdbc-url=jdbc:mariadb://mxm.kr:23306/itest
 #spring.datasource.hikari.driver-class-name=org.mariadb.jdbc.Driver
+spring: 
+   profiles: local
+   datasource:
+    hikari:
+     username: itest
+     password: dusrn1
+     #jdbc-url : jdbc:mariadb://mxm.kr:23306/itest
+     #driver-class-name : org.mariadb.jdbc.Driver 
+     jdbc-url: jdbc:log4jdbc:mariadb://mxm.kr:23306/itest
+     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
 
-# DB설정
-spring :
-  datasource :
-    hikari :
-      username : itest
-      password : dusrn1
-      jdbc-url : jdbc:mariadb://mxm.kr:23306/itest
-      driver-class-name : org.mariadb.jdbc.Driver
+spring.profiles.include: console-logging
+
+--- ## 개발환경
+spring:
+  profiles: dev
+
+#spring.profiles.include: console-logging, file-logging
 

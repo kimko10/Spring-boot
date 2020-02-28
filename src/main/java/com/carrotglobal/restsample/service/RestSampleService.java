@@ -9,11 +9,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.carrotglobal.common.service.AbstractService;
 import com.carrotglobal.restsample.dto.InfoDTO;
+import com.carrotglobal.restsample.mapper.RestSampleMapper;
 import com.carrotglobal.restsample.vo.InfoVO;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +31,7 @@ public class RestSampleService extends AbstractService {
 	@Autowired(required=false)
 	private RestSampleMapper restSampleMapper;
 
+	private Logger logger = LoggerFactory.getLogger(RestSampleService.class);
 	/**
 	 * info 테이블에서 값 가져오기
 	 * @param idx
@@ -37,6 +41,8 @@ public class RestSampleService extends AbstractService {
 	public InfoVO selectIdx(int idx) throws Exception {
 
 		InfoVO info = restSampleMapper.selectIdx(idx);
+		logger.debug("으아아아아아아아아");
+		logger.info("으아아아아아아아아ddddddddddddddd");
 		log.info("selectIdx : " + info.toString());
 		return info;
 	}
@@ -52,7 +58,7 @@ public class RestSampleService extends AbstractService {
 		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
 
 		
-		log.info("getAll : " + infoList);
+		log.debug("getAll : " + infoList);
 		return infoList;
 	}
 	
