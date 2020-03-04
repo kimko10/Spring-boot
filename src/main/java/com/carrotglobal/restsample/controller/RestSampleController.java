@@ -39,7 +39,6 @@ public class RestSampleController {
 
         InfoVO infoVo = null;
         infoVo = restsampleservice.selectIdx(idx);
-        log.error("Controller selectIdx() ERROR");
         log.info("selectIdx : " + infoVo);
        
         return infoVo;

@@ -10,10 +10,15 @@
     </resultMap>
 
     <select id="getAll" resultType="com.carrotglobal.restsample.vo.InfoVO">
-        select * from info
+    	/* RestSampleMapper.getAll : 전체 데이터 조회 */
+    	SELECT 
+    		* 
+    	FROM 
+    		info
     </select>
 
     <insert id="insertIdx" parameterType="com.carrotglobal.restsample.dto.InfoDTO">
+    	/* RestSampleMapper.insertIdx : 데이터 추가 */
         INSERT INTO info
             (
             	idx
@@ -27,6 +32,7 @@
     </insert>
 
     <update id="updateIdx" parameterType="com.carrotglobal.restsample.dto.InfoDTO">
+    	/* RestSampleMapper.insertIdx : 데이터 수정 */
         UPDATE 
             info
         SET
@@ -36,8 +42,11 @@
     </update>
 
     <delete id="deleteIdx">
-        DELETE FROM info
-        WHERE idx = #{idx}
+    	/* RestSampleMapper.insertIdx : 데이터 삭제 */
+        DELETE 
+        	FROM info
+        WHERE 
+        	idx = #{idx}
     </delete>
 
 
