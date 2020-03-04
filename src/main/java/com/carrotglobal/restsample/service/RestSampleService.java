@@ -1,16 +1,7 @@
 package com.carrotglobal.restsample.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,149 +22,73 @@ public class RestSampleService extends AbstractService {
 	@Autowired(required=false)
 	private RestSampleMapper restSampleMapper;
 
-	private Logger logger = LoggerFactory.getLogger(RestSampleService.class);
 	/**
-	 * info Å×ÀÌºí¿¡¼­ °ª °¡Á®¿À±â
+	 * info ê°’ ì¡°íšŒ
 	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	public InfoVO selectIdx(int idx) throws Exception {
 
+		log.info("#### [ RestSampleService.selectIdx ] param idx : " + idx);
 		InfoVO info = restSampleMapper.selectIdx(idx);
-		logger.debug("À¸¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ");
-		logger.info("À¸¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æ¾Æddddddddddddddd");
-		log.info("selectIdx : " + info.toString());
 		return info;
+		
 	}
 
 	/**
-	 * info Å×ÀÌºí¿¡¼­ ÀüÃ¼ °ª °¡Á®¿À±â
+	 * info ì „ì²´ ì¡°íšŒ
 	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	public List<InfoVO> getAll() throws Exception {
 		
+		log.info("#### [ RestSampleService.getAll ]");
 		List<InfoVO> infoList = (List<InfoVO>) restSampleMapper.getAll();
-
 		
-		log.debug("getAll : " + infoList);
 		return infoList;
 	}
 	
 	/**
-	 * info Å×ÀÌºí¿¡¼­ °ª Ãß°¡
+	 * info ê°’ ì¶”ê°€
 	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	public void insertIdx(InfoDTO dto) throws Exception {
 
-		log.info("insertIdxService");
+		log.info("#### [ RestSampleService.insertIdx ] param dto : " + dto);
 		restSampleMapper.insertIdx(dto);
 
 	}
 
 	/**
-	 * info Å×ÀÌºí¿¡¼­ °ª ¼öÁ¤
+	 * info ê°’ ìˆ˜ì •
 	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	public void updateIdx(InfoDTO dto) throws Exception {
-		log.info("updateIdxService");
+		
+		log.info("#### [ RestSampleService.updateIdx ] param dto : " + dto);
 		restSampleMapper.updateIdx(dto);
-		// Æ®·£Á§¼Ç Å×½ºÆ® ¿ë
+		// transaction test
 		//throw new NullPointerException();
 
 	}
 
 	/**
-	 * info Å×ÀÌºí¿¡¼­ °ª »èÁ¦
+	 * info ê°’ ì‚­ì œ
 	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	public void deleteIdx(int idx) throws Exception {
-		log.info("deleteIdxService");
+		
+		log.info("#### [ RestSampleService.deleteIdx ] param idx : " + idx);
 		restSampleMapper.deleteIdx(idx);
 		
 	}
 
-   	public void sendPostTest() throws Exception {
-		
-		URL url = new URL("https://atlas.kuder.com/api/externalapi/GetUserAssessmentItemByCategory"); // È£ÃâÇÒ URL
-    	Map<String, Object> params = new LinkedHashMap<>(); // LinkedHashMapÀº HashMap°ú´Â keyÀÇ ¼ø¼­°¡ ÁöÄÑÁö´Â Â÷ÀÌ°¡ ÀÖÀ½
-    	params.put("OrganizationAPIKey", "abe52eca-df09-4cb5-9934-45f37f73887d");
-    	params.put("AssessmentCategoryId", 2);
-    	params.put("CultureId", 5);
-    	params.put("IsAdult", true);
-    	
-    	StringBuilder postData = new StringBuilder();
-    	for(Map.Entry<String, Object> param : params.entrySet()) {
-    		if(postData.length() != 0)
-    			postData.append('&');
-    		
-    		postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-    		postData.append('=');
-    		postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
-    	}
-    	
-    	byte[] postDataBytes = postData.toString().getBytes("UTF-8");
-    	
-    	HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-    	conn.setRequestMethod("POST");
-    	conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-    	conn.setRequestProperty("Content-Length",  String.valueOf(postDataBytes.length));
-    	conn.setDoOutput(true);
-    	conn.getOutputStream().write(postDataBytes); // POST È£Ãâ
-    	
-    	int responseCode = conn.getResponseCode();
-    	log.info("URL : " + url.toString());
-    	log.info("Parameter : " + postData.toString());
-    	log.info("Response Code : " + responseCode);
-    	
-    	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-    	
-    	String inputLine ="";
-        while((inputLine = in.readLine()) != null) { // response Ãâ·Â
-            
-            log.info("sendGetTest Á¶È¸°á°ú : " + inputLine);
-            
-    	}
-    	
-    	
-    	in.close();
-
-    }
-    
-	public void sendGetTest() throws Exception {
-    	
-		
-    	URL url = new URL("https://atlas.kuder.com/api/externalapi/GetAllCultures/abe52eca-df09-4cb5-9934-45f37f73887d");
-    	
-    	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-    	
-    	conn.setRequestProperty("Content-Type", "application/json");
-    	conn.setDoOutput(true);
-    	conn.setRequestMethod("GET");
-    	
-    	int responseCode = conn.getResponseCode();
-    	log.info("URL : " + url.toString());
-    	log.info("Response Code : " + responseCode);
-    	
-    	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-    	
-    	String inputLine;
-    	
-    	while((inputLine = in.readLine()) != null) {
-
-    		log.info("sendGetTest Á¶È¸°á°ú : " + inputLine);
-    		
-    	}
-    	
-    	in.close();
-    	
-    }
 }

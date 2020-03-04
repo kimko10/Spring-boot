@@ -5,20 +5,25 @@
     <!-- Console 설정 -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-	    	<pattern>%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] - %msg%n</pattern>
+	    	<pattern>[ %-5level] %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{36}.%M:%line] - %msg%n</pattern>
 	    </encoder>
     </appender>
     
+    <!-- application.yml profiles logger test용 -->
     <!-- Console 설정 -->
     <appender name="CONSOLE2" class="ch.qos.logback.core.ConsoleAppender">
 	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-	    	<pattern>%-5level %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{0}:%line] >>>> %msg%n</pattern>
+	    	<pattern>[ %-5level] %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{36}.%M:%line] >>>> %msg%n</pattern>
 	    </encoder>
     </appender>
     
     <!-- root레벨 설정 -->
     <root level="INFO">
     	<springProfile name="console-logging">
+	    	<appender-ref ref="CONSOLE"/>
+    	</springProfile>
+    	<!-- application.yml profiles logger test용 -->
+    	<springProfile name="console-logging2">
 	    	<appender-ref ref="CONSOLE2"/>
     	</springProfile>
     </root>

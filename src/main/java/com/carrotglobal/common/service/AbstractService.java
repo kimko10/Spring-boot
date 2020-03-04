@@ -3,7 +3,7 @@ package com.carrotglobal.common.service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Transaction Ã³¸® ¹× °øÅëÃ³¸®°¡ ÇÊ¿äÇÑ ºÎºĞ
+ * Transaction ì²˜ë¦¬ ë° ê³µí†µì²˜ë¦¬ê°€ í•„ìš”í•œ ë¶€ë¶„
  * @author D83
  *
  */

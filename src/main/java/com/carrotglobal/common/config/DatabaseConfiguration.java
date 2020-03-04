@@ -20,11 +20,11 @@ import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * DatabaseConfiguration
- * µ¥ÀÌÅÍº£ÀÌ½º Á¢¼Ó, Æ®·£Àè¼Ç °ü¸®, DAO, Service ¸¦ Á¤ÀÇ
+ * ë°ì´í„°ë² ì´ìŠ¤ ì ‘ì†, íŠ¸ëœì­ì…˜ ê´€ë¦¬, DAO, Service ë¥¼ ì •ì˜
  */
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.carrotglobal.**.mapper"}) // Mapper(DAO) ÀÎÅÍÆäÀÌ½º ½ºÄµÇÏµµ·Ï ¼³Á¤
+@MapperScan(basePackages= {"com.carrotglobal.**.mapper"}) // Mapper(DAO) ì¸í„°í˜ì´ìŠ¤ ìŠ¤ìº”í•˜ë„ë¡ ì„¤ì •
 public class DatabaseConfiguration {
 	
 	@Autowired
