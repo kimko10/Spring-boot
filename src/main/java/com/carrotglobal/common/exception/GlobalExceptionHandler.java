@@ -30,7 +30,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			error.setCode(status.value());
 			error.setUri(((ServletWebRequest)request).getRequest().getRequestURI());
 			error.setHttpStatus(status);
-		  
+		    
 			return error;
 	}
 	
