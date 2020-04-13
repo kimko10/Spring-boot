@@ -40,6 +40,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 		ErrorHandle error = createErrorObject(ex, status, request);
 		log.error("globalHandleException >>>>> " + ex);
+		log.error("globalHandleException >>>>> " + ex);
 		return handleExceptionInternal(ex, error, new HttpHeaders(), status, request);
 		
 	}
