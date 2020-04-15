@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,19 +31,26 @@ public class DatabaseConfiguration {
 	@Autowired
 	private ApplicationContext applicationContext;
 	
-	@Bean
-	@ConfigurationProperties(prefix="spring.datasource.hikari")
-	public HikariConfig hikariConfig() {
-		return new HikariConfig();
-	}
 	
-	@Bean(destroyMethod="close")
-	public DataSource dataSource() throws Exception {
-		hikariConfig().setAutoCommit(false);
-		DataSource dataSource = new HikariDataSource(hikariConfig());
-		//dataSource.getConnection().setAutoCommit(false);
-		return dataSource;
-	}
+	  @Bean
+	  @ConfigurationProperties(prefix="spring.datasource.hikari")
+	  public HikariConfig hikariConfig() { return new HikariConfig(); }
+	  
+	  @Bean(destroyMethod="close")
+	  public DataSource dataSource() throws Exception  { 
+		  hikariConfig().setAutoCommit(false);
+		  DataSource dataSource = new HikariDataSource(hikariConfig());
+		  return dataSource;
+	  }
+	  
+	/*
+	 * @Bean(name="dataSource", destroyMethod="close")
+	 * 
+	 * @ConfigurationProperties(prefix = "spring.datasource.hikari") public
+	 * DataSource dataSource() throws Exception { HikariConfig test = new
+	 * HikariConfig(); DataSource dataSource = new HikariDataSource(test); return
+	 * dataSource; }
+	 */
 	
 	@Bean
 	public PlatformTransactionManager transactionManager() throws Exception {

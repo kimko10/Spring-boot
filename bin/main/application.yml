@@ -15,16 +15,25 @@ spring:
 #spring.datasource.hikari.jdbc-url=jdbc:mariadb://mxm.kr:23306/itest
 #spring.datasource.hikari.driver-class-name=org.mariadb.jdbc.Driver
 spring: 
-   profiles: local
-   datasource:
+  profiles: local
+  datasource:
     hikari:
-     username: itest
-     password: dusrn1
+      username: itest
+      password: dusrn1
+      jdbc-url: jdbc:log4jdbc:mariadb://mxm.kr:23306/itest
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+     #username: root
+     #password: qufdl123456!
+     #jdbc-url: jdbc:mariadb://localhost:3306/webdb
+     #driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
      #jdbc-url : jdbc:mariadb://mxm.kr:23306/itest
      #driver-class-name : org.mariadb.jdbc.Driver 
-     jdbc-url: jdbc:log4jdbc:mariadb://mxm.kr:23306/itest
-     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-
+     
+  security:
+    user:
+      name: user
+      password: test
+      
 spring.profiles.include: console-logging
 
 --- ## 개발환경

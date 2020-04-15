@@ -8,7 +8,7 @@ group = 'com.carrotglobal'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-// gradle ÄÄÆÄÀÏ ½Ã UTF-8·Î ÀÎÄÚµù Ã³¸®
+// gradle ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ UTF-8ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ Ã³ï¿½ï¿½
 compileJava.options.encoding = 'UTF-8'
 
 tasks.withType(JavaCompile) {
@@ -24,14 +24,19 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
-
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation 'org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.1.BUILD-SNAPSHOT'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+    
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+
 	compile ('org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16')
 	compile group: 'com.zaxxer', name: 'HikariCP', version: '2.3.2'
 	// log4jdbc
