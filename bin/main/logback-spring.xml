@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	
+    <!-- 
+       log4jdbc-log4j2
+       SQL문 로그 레벨 설정
+       SQL문하고 테이블정보만 나오도록 설정해둠
+    -->
+    <logger name="jdbc.sqlonly" level="off"/>
+    <logger name="jdbc.sqltiming" level="INFO"/>
+    <logger name="jdbc.audit" level="off"/>
+    <logger name="jdbc.resultset" level="off"/>
+    <logger name="jdbc.resultsettable" level="INFO"/>
+    <logger name="jdbc.connection" level="off"/>
+
+    <!-- Console 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    	<pattern>[ %-5level ] %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{36}.%M:%line] >>>> %msg%n</pattern>
+	    </encoder>
+    </appender>
+    
+    <!-- application.yml profiles logger test용 -->
+    <!-- Console 설정 -->
+    <appender name="CONSOLE2" class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+	    	<pattern>[ %-5level ] %d{yy-MM-dd HH:mm:ss}[%thread] [%logger{36}.%M:%line] >>>> %msg%n</pattern>
+	    </encoder>
+    </appender>
+
+    <!-- root레벨 설정 -->
+    <root level="INFO">
+    	<springProfile name="console-logging">
+	    	<appender-ref ref="CONSOLE"/>
+    	</springProfile>
+    	<!-- application.yml profiles logger test용 -->
+    	<!-- <springProfile name="console-logging2">
+	    	<appender-ref ref="CONSOLE2"/>
+    	</springProfile> -->
+    </root>
+
+</configuration>
+
